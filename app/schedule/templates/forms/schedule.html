@@ -1,0 +1,88 @@
+<form action="" method="post" name="schedule" enctype="multipart/form-data" class="form-horizontal">
+    <fieldset>
+        <legend>Редактирование расписания</legend>
+
+        <div>{{ form.hidden_tag() }}</div>
+
+        <div class="control-group {% if form.errors.subject %} error {% endif %}">
+          <label class="control-label" for="subject">Предмет</label>
+          <div class="controls">
+            {{ form.subject(required='required') }}
+            {% for error in form.errors.subject %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.school_class %} error {% endif %}">
+          <label class="control-label" for="school-class">Класс</label>
+          <div class="controls">
+            {{ form.school_class() }}
+            {% for error in form.errors.school_class %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.start_time or form.errors.end_time %} error {% endif %}">
+          <label class="control-label" for="start-time">Время</label>
+          <div class="controls">
+            {{ form.start_time(
+              required='required',
+              maxlength=5,
+              class='input-small'
+            ) }}
+            &dash;
+            {{ form.end_time(
+              required='required',
+              maxlength=5,
+              class='input-small'
+            ) }}
+
+            {% for error in form.errors.start_time %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+            {% for error in form.errors.end_time %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.day %} error {% endif %}">
+          <label class="control-label" for="day">День</label>
+          <div class="controls">
+            {{ form.day(required='required') }}
+            {% for error in form.errors.day %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.teacher %} error {% endif %}">
+          <label class="control-label" for="teacher">Учитель</label>
+          <div class="controls">
+            {{ form.teacher(required='required') }}
+            {% for error in form.errors.teacher %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.room %} error {% endif %}">
+          <label class="control-label" for="room">Кабинет</label>
+          <div class="controls">
+            {{ form.room(required='required') }}
+            {% for error in form.errors.room %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <button id="save-schedule" type="submit" class="btn btn-primary">Сохранить</button>
+          </div>
+        </div>
+
+    </fieldset>
+</form>

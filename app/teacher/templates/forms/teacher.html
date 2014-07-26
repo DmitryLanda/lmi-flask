@@ -1,0 +1,111 @@
+<form action="" method="post" name="teacher" enctype="multipart/form-data" class="form-horizontal">
+    <fieldset>
+        <legend>Редактирование учителя</legend>
+
+        <div>{{ form.hidden_tag() }}</div>
+
+        <div class="control-group {% if form.errors.name %} error {% endif %}">
+          <label class="control-label" for="name">Ф.И.О.</label>
+          <div class="controls">
+            {{ form.name(
+                placeholder="Фамилия Имя Отчество",
+                class="input-xlarge",
+                required='required'
+              ) }}
+            {% for error in form.errors.name %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.birth_date %} error {% endif %}">
+          <label class="control-label" for="birth_date">Дата рождения</label>
+          <div class="controls">
+            {{ form.birth_date(
+                placeholder="день/месяц/год",
+                class="input-xlarge",
+                required='required',
+                type='date'
+              ) }}
+            {% for error in form.errors.birth_date %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.email %} error {% endif %}">
+          <label class="control-label" for="email">Электронная почта</label>
+          <div class="controls">
+            {{ form.email(
+                placeholder="user@example.com",
+                class="input-xlarge",
+                required='required',
+                type='email'
+              ) }}
+            {% for error in form.errors.email %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.subject %} error {% endif %}">
+          <label class="control-label" for="subject">Предмет</label>
+          <div class="controls">
+            {{ form.subject(required='required') }}
+            {% for error in form.errors.subject %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.school_class %} error {% endif %}">
+          <label class="control-label" for="school_class">Класс</label>
+          <div class="controls">
+            {{ form.school_class(required='required') }}
+            {% for error in form.errors.school_class %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.room %} error {% endif %}">
+          <label class="control-label" for="room">Кабинет</label>
+          <div class="controls">
+            {{ form.room }}
+            {% for error in form.errors.room %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.about %} error {% endif %} }}">
+          <label class="control-label" for="about">Дополнительная информация</label>
+          <div class="controls">
+            {{ form.about }}
+            {% for error in form.errors.about %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="files">Фотографии</label>
+          <div class="controls">
+            <input
+                type="file"
+                name="teacher_files[]"
+                multiple="multiple"
+                accept="image/*"
+                class="input-file"
+                required="required"
+            >
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <button id="save-teacher" type="submit" class="btn btn-primary">Сохранить</button>
+          </div>
+        </div>
+    </fieldset>
+</form>

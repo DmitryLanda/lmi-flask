@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="news" class="entity-list-wide">
+        <h3 class="text-left">Новости и события лицея</h3>
+        <ul>
+            {% for news in news_list %}
+                <li class="span12">
+                    <a class="thumbnail" href="{{ url_for('news.show_news', news_id=news.id) }}">
+                        <h3>{{ news.title }}</h3>
+                        <div class="pull-left">
+                            {% set album = news.get_album().next() %}
+                            {% if album %}
+                                <img src="{{ album.photos.next().size.small() }}">
+                            {% else %}
+                                <img src="">
+                            {% endif %}
+                        </div>
+                        <div class="pull-left">
+                            <p>Thumbnail caption...</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+            {% else %}
+                <div class="alert alert-info">Нет информации</div>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

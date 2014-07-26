@@ -1,0 +1,52 @@
+<form action="" method="post" name="news" enctype="multipart/form-data" class="form-horizontal">
+    <fieldset>
+        <legend>Редактирование новостей</legend>
+
+        <div>{{ form.hidden_tag() }}</div>
+
+        <div class="control-group {% if form.errors.title %} error {% endif %}">
+          <label class="control-label" for="title">Заголовок</label>
+          <div class="controls">
+            {{ form.title(
+                placeholder="заголовок новости",
+                class="input-xlarge",
+                required='required'
+              ) }}
+            {% for error in form.errors.title %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.body %} error {% endif %}">
+          <label class="control-label" for="body">Новость</label>
+          <div class="controls">
+            {{ form.body(required='required') }}
+            {% for error in form.errors.body %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="files">Фотографии</label>
+          <div class="controls">
+            <input
+                type="file"
+                name="news_files[]"
+                multiple="multiple"
+                accept="image/*"
+                class="input-file"
+                required="reqired"
+            >
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <button id="save-news" type="submit" class="btn btn-primary">Сохранить</button>
+          </div>
+        </div>
+
+    </fieldset>
+</form>

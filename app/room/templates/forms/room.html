@@ -1,0 +1,67 @@
+<form action="" method="post" name="room" enctype="multipart/form-data" class="form-horizontal">
+    <fieldset>
+        <legend>Редактирование кабинета</legend>
+
+        <div>{{ form.hidden_tag() }}</div>
+
+        <div class="control-group {% if form.errors.name %} error {% endif %}">
+          <label class="control-label" for="title">Название</label>
+          <div class="controls">
+            {{ form.name(
+                placeholder="название кабинета",
+                class="input-xlarge",
+                required='required'
+              ) }}
+            {% for error in form.errors.name %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.number %} error {% endif %}">
+          <label class="control-label" for="title">Номер</label>
+          <div class="controls">
+            {{ form.number(
+                placeholder="номер кабинета",
+                class="input-xlarge",
+                required='required',
+                type='number'
+              ) }}
+            {% for error in form.errors.number %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group {% if form.errors.state %} error {% endif %} }}">
+          <label class="control-label" for="body">Техническое состояние</label>
+          <div class="controls">
+            {{ form.state }}
+            {% for error in form.errors.state %}
+                <span class="help-inline">{{ error }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="files">Фотографии</label>
+          <div class="controls">
+            <input
+                type="file"
+                name="room_files[]"
+                multiple="multiple"
+                accept="image/*"
+                class="input-file"
+                required="reqired"
+            >
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <button id="save-room" type="submit" class="btn btn-primary">Сохранить</button>
+          </div>
+        </div>
+
+    </fieldset>
+</form>

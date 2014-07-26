@@ -1,0 +1,87 @@
+body {
+  max-width: 1024px;
+  margin: 0 auto;
+  background: url("../images/bg-noise-11.jpg") repeat scroll #ffffff;
+  box-shadow: 0 0 15px 5px #000000;
+  height: 100%;
+}
+#header,
+#content,
+footer {
+  background-color: #fff;
+}
+.navbar-inner {
+  border-radius: 0 0 4px 4px;
+}
+.floating-header {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+.invisible {
+  visibility: hidden;
+}
+.visible {
+  visibility: visible;
+}
+.normal-margin-top {
+  margin-top: 45px;
+}
+.padding-right-10 {
+  padding-right: 10px;
+}
+.padding-top-10 {
+  padding-top: 10px;
+}
+.dl-horizontal dt {
+  clear: none !important;
+  margin-right: 20px;
+  width: 20%;
+}
+.selected {
+  border: 3px solid #6495ed;
+}
+.hidden {
+  display: none !important;
+}
+.inline-block {
+  display: inline-block;
+}
+.entity-list-wide a.thumbnail {
+  color: #333;
+}
+.entity-list-wide a.thumbnail:hover {
+  text-decoration: none;
+  color: #333;
+  background-color: #eee;
+}
+.entity-list-wide ul li {
+  margin-left: 0 !important;
+}
+.text-bold {
+  font-weight: bold;
+}
+img.thumb {
+  max-width: 150px;
+  max-height: 150px;
+}
+img.small {
+  max-width: 500px;
+  max-height: 500px;
+}
+img.medium {
+  max-width: 800px;
+  max-height: 800px;
+}
+.thumbnail {
+  margin-bottom: 10px;
+}
+div.divider {
+  background-color: #E5E5E5;
+  height: 1px;
+  border-bottom: 1px solid #FFFFFF;
+}
+.dl-horizontal dt {
+  width: 30%;
+  text-overflow: clip;
+}

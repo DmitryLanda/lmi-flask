@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="thumbnail">
+        <h3>{{ news.title }}</h3>
+        <div class="pull-left">
+            <img src="{{ news.get_media().next().size.small() }}" alt="">
+        </div>
+        <div class="pull-left">
+            <p>{{ news.body }}</p>
+        </div>
+        <div class="clearfix"></div>
+        <div class="pull-right">
+            <i>{{ news.author.name }}, {{ news.last_modified.strftime('%d %B, %Y %H:%m') }}</i>
+        </div>
+        <hr>
+            <ul class="thumbnails">
+                {% for image in news.get_media() %}
+                     <li class="span2">
+                        <a href="#" class="thumbnail">
+                            <img src="{{ image.size.thumb() }}" alt="">
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+    </div>
+{% endblock %}

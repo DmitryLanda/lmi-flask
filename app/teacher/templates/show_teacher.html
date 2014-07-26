@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="teacher">
+        {% set photos = teacher.get_album().next().photos %}
+        {% set image = photos.next().size.medium() %}
+        <h3>{{ teacher.name }}</h3>
+        <div class="tabbable tabs-right">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#common">Общая информация</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#biography">Биография</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#regards">Награды</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#projects">Проекты</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#photos">Фотографии</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="span4">
+                    <img src="{{ image }}" class="thumbnail pull-left span11">
+                </div>
+                <div id="common" class="tab-pane active">
+                    <dl class="dl-horizontal">
+                        {% set defaultElement = '<span class="muted">Не указано</span>' %}
+
+                        <dt>Дата рождения</dt>
+                        <dd>{{ teacher.birth_date.strftime('%d %B, %Y') }}</dd>
+
+                        <dt>Преподаваемый предмет</dt>
+                        <dd>{{ teacher.subject.name }}</dd>
+
+                        <dt>Кабинет</dt>
+                        <dd>
+                            <a href="{{ url_for('rooms.show_room', room_number=teacher.room.number) }}">
+                                {{ teacher.room.number|default(defaultElement|safe) }}
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+                <div id="biography" class="tab-pane">
+                    <p class="text-left">{{ teacher.about|default(defaultElement|safe) }}</p>
+                </div>
+                <div id="regards" class="tab-pane">
+                    {{ defaultElement|safe }}
+                </div>
+                <div id="projects" class="tab-pane">
+                    {{ defaultElement|safe }}
+                </div>
+                <div id="photos" class="tab-pane">
+                    {% for image in photos %}
+                        <div class="span4">
+                            <img src="{{ image.size.medium() }}" class="thumbnail pull-left span11">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

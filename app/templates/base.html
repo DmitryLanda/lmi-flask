@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block stylesheet %}{% endblock %}
+
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/customization.css') }}" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <img src="{{ url_for('static', filename='images/header.jpg') }}">
+    </div>
+    <div id="content">
+        {% include "parts/navbar.html" %}
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    {% include "parts/left-menu.html" %}
+                </div>
+                <div class="span9" style="padding-left: 20px;  padding-right: 20px;">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <footer class="text-center">
+        {% include "parts/footer.html" %}
+    </footer>
+    {% block javascript %}{% endblock %}
+
+    <script>
+        $(document).ready(function() {
+            $('.persist-header').each(function(i) {
+                if (!$(this).next().hasClass('floating-header')) {
+                    var clone = $(this).clone().addClass('floating-header invisible');
+                    clone.removeClass('persist-header');
+                    clone.width($(this).width());
+                    $(this).after(clone);
+                }
+            });
+            $(window).scroll(function() {
+                $('.persist-header').each(function(i) {
+                    if ($(window).scrollTop() > $(this).offset().top) {
+                        $(this).addClass('invisible');
+                        $(this).next().removeClass('invisible');
+                    } else {
+                        $(this).next().addClass('invisible');
+                        $(this).removeClass('invisible');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

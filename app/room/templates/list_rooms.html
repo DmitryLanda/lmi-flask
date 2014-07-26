@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="rooms" class="entity-list-wide">
+        <h3 class="text-left">Кабинеты лицея</h3>
+        <ul>
+            {% for room in room_list %}
+                <li class="span12">
+                    <a class="thumbnail" href="{{ url_for('rooms.show_room', room_number=room.number) }}">
+                        <h3>{{ room.number }}.{{ room.name }}</h3>
+                        <div class="pull-left">
+                            {% set album = room.get_album().next() %}
+                            {% if album %}
+                                <img src="{{ album.photos.next().size.small() }}">
+                            {% else %}
+                                <img src="">
+                            {% endif %}
+                        </div>
+                        <div class="pull-left">
+                            <p>{{ room.state|default('Хорошее') }}</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+            {% else %}
+                <div class="alert alert-info">Нет информации</div>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
